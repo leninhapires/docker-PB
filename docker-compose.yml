@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysqlwordpress.cpiwgcu2cf0j.us-east-1.rds.amazonaws.com
+      WORDPRESS_DB_USER: leninha
+      WORDPRESS_DB_PASSWORD: Senha123
+      WORDPRESS_DB_NAME: mysqlwordpress
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: mysqlwordpress
+      MYSQL_USER: leninha
+      MYSQL_PASSWORD: Senha123
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
+
+
